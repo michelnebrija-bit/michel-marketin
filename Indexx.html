@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f4ed">
+  <meta name="description" content="Sierra & Taza: descubre una propuesta de café de especialidad tostado en Madrid y pensado para disfrutar en casa.">
+  <title>Sierra & Taza — Un café que hace especial lo cotidiano</title>
+  <style>
+    :root {
+      --paper:#f8f4ed;--cream:#fffdf8;--ink:#262923;--muted:#69695e;--terracotta:#b85b3b;
+      --terra-dark:#8b422c;--sage:#50664f;--sage-pale:#e5e9de;--line:#ded9cf;--brown:#3c2922;
+      --gold:#d0aa65;--shadow:0 22px 64px rgba(57,45,31,.11);
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:95px}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+    button,input,select{font:inherit}
+    button{cursor:pointer}
+    a{color:inherit;text-decoration:none}
+    img,svg{max-width:100%}
+    ::selection{background:#edc3a9;color:#392a22}
+    :focus-visible{outline:3px solid #d18d68;outline-offset:3px}
+    .container{width:min(1170px,calc(100% - 64px));margin-inline:auto}
+    .eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.22em;font-weight:800;color:var(--terra-dark)}
+    .serif{font-family:Georgia,'Times New Roman',serif;font-weight:400}
+    .section-heading{font-family:Georgia,'Times New Roman',serif;font-size:clamp(37px,5vw,62px);font-weight:400;line-height:1.07;letter-spacing:-.046em;margin:16px 0 18px}
+    .section-subtitle{max-width:610px;color:var(--muted);font-size:16px;line-height:1.8}
+    .btn{display:inline-flex;justify-content:center;align-items:center;gap:11px;padding:16px 24px;border-radius:5px;font-weight:750;font-size:13px;letter-spacing:.015em;border:1px solid transparent;transition:transform .2s,background .2s,box-shadow .2s;white-space:nowrap}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-dark{background:var(--ink);color:#fffdf7}
+    .btn-dark:hover{background:var(--terra-dark);box-shadow:0 7px 22px rgba(139,66,44,.18)}
+    .btn-white{background:var(--cream);border-color:var(--line);color:var(--ink)}
+    .btn-white:hover{background:#fff}
+    .btn-terra{background:var(--terracotta);color:white}
+    .btn-terra:hover{background:var(--terra-dark)}
+    .btn svg{width:17px;height:17px}
+    .announcement{background:#314637;color:#e9ecde;text-align:center;font-size:10px;letter-spacing:.16em;text-transform:uppercase;padding:10px 18px;font-weight:700}
+    .header{background:rgba(248,244,237,.96);backdrop-filter:blur(14px);position:sticky;top:0;z-index:20;border-bottom:1px solid rgba(71,58,44,.1)}
+    .nav{height:81px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .logo{display:flex;align-items:center;gap:12px;min-width:max-content}
+    .logo-mark{height:40px;width:40px;display:grid;place-items:center;border:1.5px solid var(--ink);border-radius:50%;position:relative;overflow:hidden}
+    .logo-mark svg{width:32px;height:32px}
+    .logo-text{display:flex;flex-direction:column;gap:4px;font-size:17px;letter-spacing:.09em;font-weight:800;line-height:1}
+    .logo-text small{font-size:8px;color:var(--terracotta);font-weight:750;letter-spacing:.29em}
+    .nav-links{display:flex;align-items:center;gap:30px;font-size:12px;font-weight:700;color:#464a40}
+    .nav-links a:hover{color:var(--terracotta)}
+    .nav-actions{display:flex;align-items:center;gap:14px}
+    .cart-button{border:1px solid var(--line);background:transparent;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;position:relative;color:var(--ink)}
+    .cart-button svg{width:19px;height:19px}
+    .cart-count{position:absolute;right:-5px;top:-5px;background:var(--terracotta);color:white;border-radius:50%;width:18px;height:18px;display:none;place-items:center;font-size:10px;font-weight:800}
+    .nav-cta{padding:13px 18px}
+    .mobile-toggle{display:none;background:transparent;border:0;padding:7px}
+    .mobile-toggle svg{width:27px;height:27px}
+    .hero{overflow:hidden}
+    .hero-layout{display:grid;grid-template-columns:1fr 1.03fr;align-items:center;min-height:666px;gap:36px}
+    .hero-copy{padding:70px 0 88px;position:relative;z-index:2}
+    .hero-copy h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(57px,6.1vw,88px);font-weight:400;line-height:1.01;letter-spacing:-.057em;margin:22px 0 25px}
+    .hero-copy h1 em{font-weight:400;color:var(--terracotta);font-style:italic}
+    .hero-description{color:#67685f;font-size:16px;line-height:1.86;max-width:470px;margin:0 0 33px}
+    .hero-actions{display:flex;gap:11px;flex-wrap:wrap}
+    .hero-foot{margin-top:54px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+    .hero-foot div{display:flex;align-items:center;gap:8px;color:#5c6055;font-size:12px;font-weight:700}
+    .hero-foot svg{height:16px;width:16px;stroke:var(--terracotta)}
+    .hero-scene{height:620px;position:relative;display:flex;align-items:center;justify-content:center}
+    .sun-disc{position:absolute;width:min(550px,100%);height:520px;border-radius:48% 48% 43% 43%;background:#e7d7c1;transform:rotate(4deg);top:54px;left:5%;overflow:hidden}
+    .sun-disc::after{content:"";position:absolute;width:110%;height:34%;background:rgba(255,253,247,.13);left:-5%;bottom:0;transform:rotate(-13deg)}
+    .scene-arc{position:absolute;top:38px;right:-6%;width:275px;height:300px;border:1px solid rgba(135,88,59,.22);border-radius:50%;transform:rotate(-35deg)}
+    .scene-arc::after{content:"";position:absolute;inset:20px;border:1px solid rgba(135,88,59,.14);border-radius:50%}
+    .scene-tag{position:absolute;right:-1%;top:100px;z-index:3;background:var(--cream);padding:15px 17px;transform:rotate(9deg);box-shadow:0 12px 25px rgba(73,55,38,.09);border-radius:2px;font-family:Georgia,serif;font-style:italic;font-size:15px;text-align:center;line-height:1.2}
+    .scene-tag strong{display:block;font:800 11px Arial,sans-serif;letter-spacing:.16em;margin-bottom:4px;color:var(--terracotta)}
+    .bag{width:315px;height:445px;position:absolute;top:92px;left:calc(50% - 152px);z-index:2;transform:rotate(-8deg);filter:drop-shadow(20px 24px 18px rgba(73,48,23,.21));transition:transform .45s}
+    .hero-scene:hover .bag{transform:rotate(-5deg) translateY(-6px)}
+    .bag-top{height:33px;background:repeating-linear-gradient(90deg,#bda98c 0,#c8b496 3px,#ac9574 5px);clip-path:polygon(3% 16%,98% 0,100% 100%,0 100%);border-radius:3px 3px 0 0}
+    .bag-body{position:relative;height:410px;clip-path:polygon(0 0,100% 0,97% 100%,4% 100%);border-radius:0 0 12px 12px;background:linear-gradient(100deg,#b7a17f 0%,#decba7 12%,#e7d8b7 54%,#d8c29f 83%,#ab9473 100%);padding:38px 35px}
+    .bag-body::before{content:"";position:absolute;inset:0 auto 0 0;width:8%;background:linear-gradient(90deg,rgba(49,34,20,.17),transparent)}
+    .bag-body::after{content:"";position:absolute;bottom:0;left:0;width:100%;height:18px;background:linear-gradient(0deg,rgba(80,52,32,.22),transparent)}
+    .bag-label{background:#f7f0df;height:325px;box-shadow:0 1px 8px rgba(47,39,30,.09);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;position:relative;border:1px solid rgba(81,71,55,.12)}
+    .bag-label::after{content:"";position:absolute;inset:7px;border:1px solid rgba(74,70,59,.15);pointer-events:none}
+    .bag-label .mini{letter-spacing:.22em;text-transform:uppercase;font-size:9px;font-weight:800;color:#52634f}
+    .bag-label .brand{font-family:Georgia,serif;font-size:31px;letter-spacing:-.08em;line-height:1.05;text-align:center;margin:14px 0 15px}
+    .mountain{width:155px;height:63px;margin:2px 0 12px}
+    .bag-label .type{font-size:10px;letter-spacing:.19em;font-weight:800;text-transform:uppercase;margin-bottom:17px}
+    .bag-label .origin{font-family:Georgia,serif;font-style:italic;font-size:14px;color:var(--terra-dark);margin-bottom:17px}
+    .bag-label .weight{font-size:10px;border-top:1px solid #c7bca6;padding-top:12px;letter-spacing:.19em;font-weight:800}
+    .cup-saucer{position:absolute;bottom:42px;right:-14px;z-index:4;transform:rotate(-8deg);width:235px;height:138px;border-radius:50%;background:radial-gradient(ellipse at 45% 43%,#fffefa 0 42%,#e9ddd0 43% 52%,#faf4e8 53% 66%,transparent 67%);filter:drop-shadow(8px 14px 8px rgba(57,37,23,.24))}
+    .cup-top{position:absolute;inset:20px 36px 18px 38px;border-radius:50%;background:radial-gradient(ellipse at 46% 45%,#9e6341 0 28%,#6b3822 33%,#462517 46%,#eee4d5 48%,#fff9ef 60%);box-shadow:inset 1px 1px 9px rgba(58,43,27,.3)}
+    .cup-top:after{content:"";position:absolute;inset:32px 47px 30px;border:2px solid rgba(230,182,136,.65);border-radius:50%;transform:rotate(25deg)}
+    .cup-handle{position:absolute;border:12px solid #f8f1e7;width:56px;height:55px;border-radius:50%;right:7px;top:43px;z-index:-1;box-shadow:4px 4px 8px rgba(58,35,23,.1)}
+    .bean{position:absolute;background:#6d442f;width:23px;height:34px;border-radius:50%;z-index:5;box-shadow:inset -5px -3px 6px rgba(31,21,15,.25),3px 7px 8px rgba(68,46,34,.12)}
+    .bean:after{content:"";height:80%;width:3px;border-radius:50%;background:#bd8f6a;position:absolute;left:50%;top:10%;transform:translateX(-50%) rotate(9deg)}
+    .bean-one{bottom:117px;left:48px;transform:rotate(41deg)}
+    .bean-two{bottom:75px;left:81px;transform:rotate(-35deg) scale(.8)}
+    .bean-three{top:170px;left:39px;transform:rotate(17deg) scale(.7)}
+    .hero-caption{position:absolute;bottom:28px;left:12px;font-size:10px;letter-spacing:.13em;font-weight:800;text-transform:uppercase;color:#827260}
+    .strip{background:#3d4d3c;color:#f8f3e8;overflow:hidden}
+    .strip-inner{display:flex;align-items:center;justify-content:center;gap:26px;padding:20px 12px;text-transform:uppercase;font-weight:800;letter-spacing:.19em;font-size:11px;flex-wrap:wrap}
+    .strip-inner i{width:5px;height:5px;border-radius:50%;background:#d4af78}
+    .benefits{padding:115px 0 124px}
+    .benefits-header{text-align:center;margin:0 auto 57px;max-width:630px}
+    .benefits-header .section-subtitle{margin-inline:auto}
+    .benefit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .benefit{border:1px solid var(--line);padding:38px 30px 34px;min-height:268px;background:rgba(255,255,255,.35);border-radius:3px}
+    .benefit-icon{width:53px;height:53px;border-radius:50%;background:#e6ded1;display:grid;place-items:center;color:var(--terra-dark)}
+    .benefit-icon svg{width:25px;height:25px}
+    .benefit h3{font:normal 28px/1.2 Georgia,serif;margin:25px 0 11px;letter-spacing:-.025em}
+    .benefit p{font-size:14px;line-height:1.8;color:var(--muted);margin:0}
+    .shop{background:#eee8dc;padding:110px 0}
+    .shop-layout{display:grid;grid-template-columns:.94fr 1.06fr;gap:76px;align-items:center}
+    .shop-visual{background:#d2c2ac;border-radius:3px;min-height:585px;position:relative;overflow:hidden;display:grid;place-items:center}
+    .shop-visual::before{content:"";width:480px;height:480px;border-radius:50%;border:1px solid rgba(255,253,242,.48);position:absolute;top:-185px;left:-175px;box-shadow:0 0 0 48px rgba(255,253,242,.08),0 0 0 112px rgba(255,253,242,.05)}
+    .shop-visual::after{content:"";width:200%;height:135px;position:absolute;bottom:-90px;background:#b4a087;filter:blur(34px)}
+    .shop-visual .bag{position:relative;left:auto;top:auto;transform:rotate(4deg) scale(.97);z-index:2}
+    .shop-visual:hover .bag{transform:rotate(1deg) scale(.99)}
+    .shop-sticker{position:absolute;top:34px;right:29px;width:94px;height:94px;border-radius:50%;background:#556b51;color:white;z-index:3;display:grid;place-items:center;text-align:center;font:italic 17px/1.17 Georgia,serif;transform:rotate(12deg)}
+    .shop-photo-caption{position:absolute;bottom:26px;left:27px;color:#4d4a3d;font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:800;z-index:4}
+    .shop-copy .section-heading{margin-bottom:17px}
+    .shop-copy .section-subtitle{max-width:490px;margin-bottom:24px}
+    .stars{font-size:12px;letter-spacing:.24em;color:#a06534;margin-bottom:10px}
+    .tasting{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:22px 0 29px}
+    .tasting span{padding:9px 12px;border:1px solid #ccc3b4;border-radius:99px;font-size:11px;font-weight:700;color:#666153}
+    .purchase-form{border-top:1px solid #cec6ba;padding-top:22px}
+    .option-label{display:flex;align-items:center;justify-content:space-between;font-weight:800;font-size:12px;margin-bottom:11px}
+    .option-label small{color:#787568;font-weight:500}
+    .pack-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:22px}
+    .pack-option{border:1px solid #c9bfb0;border-radius:4px;display:flex;justify-content:space-between;align-items:center;background:#f8f5ef;min-height:74px;padding:14px;cursor:pointer;gap:8px}
+    .pack-option:has(input:checked){border:1.5px solid var(--ink);box-shadow:inset 0 0 0 1px var(--ink);background:#fffdfa}
+    .pack-option input{accent-color:var(--terracotta);margin:0 4px 0 0}
+    .pack-name{font-weight:800;font-size:12px}
+    .pack-name small{display:block;color:#79776e;font-weight:500;font-size:10px;margin-top:4px}
+    .pack-price{font-size:14px;font-weight:800;white-space:nowrap}
+    .select{width:100%;height:51px;border:1px solid #c9bfb0;background:#f8f5ef;border-radius:3px;color:var(--ink);padding:0 14px;font-weight:650;font-size:13px;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23262923' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 15px center}
+    .buy-row{display:flex;gap:12px;margin-top:17px}
+    .qty-control{height:55px;display:flex;align-items:center;justify-content:space-between;border:1px solid #c9bfb0;border-radius:4px;min-width:122px;background:#f8f5ef}
+    .qty-control button{border:0;background:transparent;width:37px;height:100%;font-size:20px;color:var(--ink)}
+    .qty-control output{font-size:14px;font-weight:800;min-width:18px;text-align:center}
+    .add-button{flex:1}
+    .price-note{font-size:11px;color:#777569;margin-top:13px;line-height:1.6}
+    .promo{padding:95px 0;background:#ba613f;color:white;position:relative;overflow:hidden}
+    .promo::before,.promo::after{content:"";position:absolute;width:340px;height:340px;border:1px solid rgba(255,255,255,.2);border-radius:50%;pointer-events:none}
+    .promo::before{top:-230px;left:-100px;box-shadow:0 0 0 55px rgba(255,255,255,.04)}
+    .promo::after{right:-120px;bottom:-230px;box-shadow:0 0 0 55px rgba(255,255,255,.04)}
+    .promo-layout{display:flex;align-items:center;justify-content:space-between;gap:40px;position:relative;z-index:1}
+    .promo .eyebrow{color:#ffe2c5}
+    .promo h2{font:normal clamp(37px,5vw,64px)/1.08 Georgia,serif;letter-spacing:-.05em;margin:16px 0}
+    .promo p{font-size:14px;line-height:1.8;color:#fff1e9;max-width:460px}
+    .promo-code{border:1px dashed rgba(255,255,255,.85);padding:29px 32px;min-width:280px;text-align:center;background:rgba(87,31,14,.08)}
+    .promo-code .label{font-size:10px;text-transform:uppercase;letter-spacing:.16em}
+    .promo-code .code{font-size:29px;letter-spacing:.08em;font-weight:800;margin:14px 0 19px}
+    .promo-code button{width:100%;border:0;background:white;color:var(--terra-dark);border-radius:3px;padding:12px 20px;font-size:12px;font-weight:800}
+    .marketing{padding:112px 0 120px}
+    .marketing-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:40px}
+    .marketing-head .section-heading{max-width:650px;margin-bottom:0}
+    .marketing-head p{font-size:14px;line-height:1.75;max-width:300px;color:var(--muted)}
+    .p-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+    .p-card{background:#fffdf9;border:1px solid #e1dbd0;padding:28px 23px;min-height:260px;display:flex;flex-direction:column;border-radius:3px}
+    .p-card .number{font:italic 36px Georgia,serif;color:#ccae8e;line-height:1}
+    .p-card h3{font:normal 25px Georgia,serif;letter-spacing:-.035em;margin:28px 0 7px}
+    .p-card h3 small{display:block;font:750 10px Arial,sans-serif;color:var(--terra-dark);letter-spacing:.16em;text-transform:uppercase;margin-top:7px}
+    .p-card p{font-size:13px;color:#6c6c61;line-height:1.7;margin:5px 0 0}
+    .brand-story{background:#e7e9df;padding:107px 0}
+    .story-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:95px}
+    .story-art{height:480px;border-radius:50% 50% 3px 3px;background:#b9c3ac;position:relative;overflow:hidden}
+    .story-art:before{content:"";position:absolute;width:190px;height:190px;background:#e8d1a6;border-radius:50%;left:calc(50% - 95px);top:78px}
+    .hill{position:absolute;bottom:-30px;width:120%;height:240px;background:#5b7158;border-radius:50% 50% 0 0;left:-20%;transform:rotate(13deg)}
+    .hill-back{background:#789275;bottom:28px;left:23%;transform:rotate(-11deg)}
+    .hill-front{background:#3f5d4d;bottom:-113px;left:-14%;height:300px;transform:rotate(-6deg)}
+    .story-art .sun-line{position:absolute;inset:26px;border:1px solid rgba(255,255,255,.54);border-radius:50% 50% 3px 3px;z-index:1}
+    .story-art-text{position:absolute;bottom:34px;left:38px;color:white;font:italic 32px Georgia,serif;z-index:2;max-width:210px}
+    .story-copy .section-heading{max-width:480px}
+    .story-copy p{font-size:15px;line-height:1.9;color:#596255;max-width:490px}
+    .story-points{display:grid;gap:13px;margin-top:30px}
+    .story-points div{display:flex;align-items:center;gap:13px;font-weight:700;font-size:13px;color:#465744}
+    .story-points svg{width:17px;height:17px}
+    .faq{padding:110px 0}
+    .faq-layout{display:grid;grid-template-columns:1fr 1.1fr;gap:80px}
+    .faq-list details{border-bottom:1px solid var(--line);padding:0}
+    .faq-list details:first-child{border-top:1px solid var(--line)}
+    .faq-list summary{list-style:none;padding:22px 35px 22px 0;position:relative;font-weight:750;font-size:14px;cursor:pointer;line-height:1.5}
+    .faq-list summary::-webkit-details-marker{display:none}
+    .faq-list summary:after{content:'+';font:normal 25px Arial,sans-serif;position:absolute;right:1px;top:15px;color:var(--terracotta)}
+    .faq-list details[open] summary:after{content:'−'}
+    .faq-list details p{font-size:13px;line-height:1.8;color:var(--muted);margin:0 22px 22px 0}
+    .closing{background:#3c4b39;color:#fcfaf4;padding:75px 0;text-align:center}
+    .closing .eyebrow{color:#d4b689}
+    .closing h2{font:normal clamp(40px,5vw,65px)/1.15 Georgia,serif;letter-spacing:-.045em;margin:14px auto 26px;max-width:720px}
+    .closing .btn{background:#f8f4ed;color:var(--ink)}
+    .footer{background:#273729;color:#e8e9df;padding:40px 0 25px}
+    .footer-top{display:flex;align-items:start;justify-content:space-between;gap:30px;padding-bottom:35px}
+    .footer .logo-mark{border-color:#f4f1e8}
+    .footer .logo-text{color:white}
+    .footer .logo-text small{color:#e6c18e}
+    .footer p{font-size:12px;line-height:1.8;color:#aeb9ab;max-width:380px}
+    .footer-links{display:flex;gap:25px;font-size:12px;flex-wrap:wrap;margin-top:12px}
+    .footer-links a:hover{color:white;text-decoration:underline}
+    .footer-bottom{padding-top:21px;border-top:1px solid rgba(255,255,255,.15);display:flex;justify-content:space-between;gap:24px;color:#aeb9ab;font-size:11px;line-height:1.6}
+    .demo-note{max-width:610px}
+    .overlay{position:fixed;inset:0;background:rgba(27,29,24,.48);z-index:40;opacity:0;pointer-events:none;transition:opacity .25s}
+    .overlay.open{opacity:1;pointer-events:auto}
+    .drawer{position:fixed;top:0;right:0;width:min(440px,100%);height:100dvh;background:var(--paper);z-index:41;box-shadow:-15px 0 50px rgba(25,24,19,.16);transform:translateX(105%);transition:transform .3s;display:flex;flex-direction:column}
+    .drawer.open{transform:translateX(0)}
+    .drawer-head{padding:25px 26px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+    .drawer-head h2{font:normal 31px Georgia,serif;margin:0}
+    .icon-btn{background:transparent;border:0;padding:6px;display:grid;place-items:center}
+    .icon-btn svg{width:22px;height:22px}
+    .drawer-body{padding:25px 26px;overflow:auto;flex:1}
+    .drawer-empty{color:var(--muted);font-size:14px;line-height:1.6;padding:40px 0}
+    .cart-line{display:grid;grid-template-columns:66px 1fr auto;align-items:start;gap:15px;padding:18px 0;border-bottom:1px solid var(--line)}
+    .cart-thumbnail{height:72px;background:#dacdb9;border-radius:3px;display:grid;place-items:center;font:italic 31px Georgia,serif;color:#5e4a34}
+    .cart-line strong{font-size:13px;line-height:1.4;display:block}
+    .cart-line p{font-size:11px;line-height:1.6;color:var(--muted);margin:5px 0}
+    .cart-line .remove{font-size:11px;text-decoration:underline;background:none;border:0;color:var(--terra-dark);padding:3px 0}
+    .cart-line .line-price{font-weight:800;font-size:13px;white-space:nowrap}
+    .drawer-bottom{padding:22px 26px 30px;border-top:1px solid var(--line)}
+    .coupon-row{display:flex;gap:8px;margin:0 0 10px}
+    .coupon-row input{flex:1;min-width:0;border:1px solid var(--line);background:#fffdf9;border-radius:3px;padding:12px;font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+    .coupon-row button{border:0;background:var(--sage);color:white;border-radius:3px;padding:10px 15px;font-size:12px;font-weight:800}
+    .coupon-feedback{font-size:12px;color:var(--sage);min-height:20px;margin:0 0 7px}
+    .total-line{display:flex;justify-content:space-between;gap:10px;align-items:center;margin:10px 0;font-size:13px}
+    .total-line.primary{font-size:18px;font-weight:800;padding-top:10px;border-top:1px solid var(--line)}
+    .drawer .btn{width:100%;margin-top:16px}
+    .drawer-disclaimer{font-size:11px;color:var(--muted);line-height:1.7;text-align:center;margin-top:13px}
+    .toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,25px);opacity:0;z-index:55;background:var(--ink);color:white;font-size:13px;padding:14px 24px;border-radius:4px;pointer-events:none;transition:opacity .25s,transform .25s;box-shadow:var(--shadow)}
+    .toast.show{opacity:1;transform:translate(-50%,0)}
+    @media(max-width:1050px){
+      .container{width:min(100% - 48px,1050px)}
+      .hero-copy h1{font-size:clamp(53px,7vw,74px)}
+      .hero-layout{gap:4px}
+      .scene-tag{right:0}
+      .shop-layout{gap:42px}
+      .p-grid{grid-template-columns:repeat(2,1fr)}
+      .story-grid{gap:52px}
+      .nav-links{gap:15px}
+    }
+    @media(max-width:760px){
+      html{scroll-padding-top:75px}
+      .container{width:calc(100% - 38px)}
+      .announcement{font-size:9px;letter-spacing:.09em}
+      .nav{height:70px}
+      .logo-text{font-size:14px}
+      .logo-mark{width:35px;height:35px}
+      .nav-links{display:none;position:absolute;left:0;top:100%;width:100%;padding:20px;background:var(--paper);border-bottom:1px solid var(--line);flex-direction:column;align-items:start;gap:21px;box-shadow:0 20px 35px rgba(25,25,18,.09)}
+      .nav-links.open{display:flex}
+      .mobile-toggle{display:grid;place-items:center}
+      .nav-cta{display:none}
+      .hero-layout{display:flex;flex-direction:column;min-height:auto;gap:0}
+      .hero-copy{padding:65px 0 10px;align-self:stretch}
+      .hero-copy h1{font-size:clamp(52px,10.7vw,76px);max-width:590px}
+      .hero-description{font-size:15px}
+      .hero-foot{margin-top:35px;gap:18px}
+      .hero-scene{width:100%;height:510px;max-width:510px}
+      .sun-disc{top:28px;height:455px;width:90%;left:5%}
+      .bag{transform:rotate(-8deg) scale(.82);top:53px}
+      .hero-scene:hover .bag{transform:rotate(-6deg) scale(.82)}
+      .cup-saucer{transform:rotate(-8deg) scale(.78);bottom:19px;right:-22px}
+      .scene-tag{top:76px;right:3%}
+      .hero-caption{bottom:7px}
+      .strip-inner{gap:12px;font-size:9px;letter-spacing:.12em;line-height:1.8}
+      .benefits,.marketing,.faq{padding:78px 0}
+      .benefits-header{margin-bottom:36px}
+      .benefit-grid{grid-template-columns:1fr;gap:13px}
+      .benefit{min-height:auto;padding:28px}
+      .benefit h3{margin-top:19px}
+      .shop{padding:70px 0}
+      .shop-layout{grid-template-columns:1fr;gap:42px}
+      .shop-visual{min-height:480px}
+      .shop-visual .bag{transform:rotate(4deg) scale(.86)}
+      .shop-visual:hover .bag{transform:rotate(2deg) scale(.86)}
+      .promo{padding:75px 0}
+      .promo-layout{flex-direction:column;align-items:stretch;gap:23px}
+      .promo-code{max-width:450px;min-width:0}
+      .marketing-head{display:block}
+      .marketing-head p{max-width:580px}
+      .story-grid{grid-template-columns:1fr;gap:39px}
+      .brand-story{padding:80px 0}
+      .story-art{height:420px;max-width:480px;width:100%;margin:auto}
+      .faq-layout{grid-template-columns:1fr;gap:22px}
+      .closing{padding:70px 0}
+      .footer-top,.footer-bottom{flex-direction:column;gap:12px}
+    }
+    @media(max-width:470px){
+      .hero-copy h1{font-size:50px}
+      .hero-actions .btn{flex:1;font-size:12px;padding:15px 13px}
+      .hero-scene{height:450px}
+      .sun-disc{height:405px}
+      .hero-scene .bag{top:28px;left:calc(50% - 157px);transform:rotate(-8deg) scale(.75)}
+      .hero-scene:hover .bag{transform:rotate(-6deg) scale(.75)}
+      .scene-tag{right:-7px;top:66px;font-size:13px;padding:12px}
+      .cup-saucer{right:-51px;bottom:3px;transform:scale(.66) rotate(-8deg)}
+      .bean-one{left:5px;bottom:101px}
+      .bean-two{left:35px;bottom:68px}
+      .pack-options{grid-template-columns:1fr}
+      .buy-row{flex-wrap:wrap}
+      .add-button{min-width:100%}
+      .p-grid{grid-template-columns:1fr}
+      .p-card{min-height:220px}
+      .story-art{height:350px}
+      .promo-code .code{font-size:25px}
+    }
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <div class="announcement">Una propuesta nacida en Madrid · Café de especialidad para toda España</div>
+  <header class="header">
+    <nav class="nav container" aria-label="Navegación principal">
+      <a href="#inicio" class="logo" aria-label="Sierra y Taza, inicio">
+        <span class="logo-mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 27 15 12l7 9 5-6 10 12M3 32h34"/><path d="M14 26 20 20l4 4"/></svg></span>
+        <span class="logo-text">SIERRA & TAZA <small>CAFÉ CON ORIGEN</small></span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#el-cafe">El café</a>
+        <a href="#comprar">Comprar</a>
+        <a href="#concepto">Las 4 P</a>
+        <a href="#historia">Nuestra idea</a>
+        <a href="#preguntas">Preguntas</a>
+      </div>
+      <div class="nav-actions">
+        <button class="cart-button" id="openCart" type="button" aria-label="Abrir carrito de demostración">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l1 13H5L6 7ZM9 8V6a3 3 0 0 1 6 0v2"/></svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+        <a href="#comprar" class="btn btn-dark nav-cta">Descubrir café <span aria-hidden="true">↗</span></a>
+        <button class="mobile-toggle" type="button" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-layout">
+        <div class="hero-copy">
+          <div class="eyebrow">Madrid en el origen · Sabor en cada taza</div>
+          <h1>Tu mañana<br>merece un café<br><em>extraordinario.</em></h1>
+          <p class="hero-description">Café de especialidad, sin complicaciones y con todo el sabor. Una propuesta para convertir tu ritual diario en tu momento favorito.</p>
+          <div class="hero-actions">
+            <a class="btn btn-dark" href="#comprar">Descubre tu café <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-white" href="#el-cafe">Conoce la propuesta <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="hero-foot">
+            <div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 7 4v6c0 5-3.4 8.2-7 10-3.6-1.8-7-5-7-10V6l7-4Z"/><path d="m9 12 2 2 4-4"/></svg> Propuesta de calidad</div>
+            <div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 12h18M12 3v18"/><circle cx="12" cy="12" r="9"/></svg> 250 g de café</div>
+            <div><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h12v11H3zM15 9h4l3 4v4h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg> Venta online en España</div>
+          </div>
+        </div>
+        <div class="hero-scene" aria-label="Ilustración de una bolsa Sierra y Taza junto a una taza de espresso" role="img">
+          <div class="sun-disc"></div><div class="scene-arc"></div>
+          <div class="scene-tag"><strong>UN BUEN DÍA</strong>comienza aquí ☼</div>
+          <div class="bag" aria-hidden="true">
+            <div class="bag-top"></div><div class="bag-body"><div class="bag-label">
+              <span class="mini">Desde Madrid</span><span class="brand">Sierra<br>&amp; Taza</span>
+              <svg class="mountain" viewBox="0 0 160 68" fill="none" stroke="#53614b" stroke-width="1.7"><path d="M4 56 45 12l24 29 15-17 30 32 15-19 27 19M19 56h124"/><path d="m37 21 8-9 7 9M79 34l5-10 8 9"/></svg>
+              <span class="type">Café de especialidad</span><span class="origin">Origen de temporada</span><span class="weight">250 G · CAFÉ EN GRANO</span>
+            </div></div>
+          </div>
+          <div class="cup-saucer" aria-hidden="true"><div class="cup-handle"></div><div class="cup-top"></div></div>
+          <div class="bean bean-one" aria-hidden="true"></div><div class="bean bean-two" aria-hidden="true"></div><div class="bean bean-three" aria-hidden="true"></div>
+          <div class="hero-caption">Concepto visual de producto</div>
+        </div>
+      </div>
+    </section>
+    <div class="strip" aria-label="Valores de la marca"><div class="strip-inner"><span>De Madrid a tu casa</span><i></i><span>Café sin complicaciones</span><i></i><span>Un ritual con sabor</span><i></i><span>Momentos que importan</span></div></div>
+    <section id="el-cafe" class="benefits">
+      <div class="container">
+        <div class="benefits-header"><div class="eyebrow">El placer de lo sencillo</div><h2 class="section-heading">Buen café. <em>Buenos momentos.</em></h2><p class="section-subtitle">Para quienes quieren dar el salto del café de siempre al café que realmente apetece, sin aprender un nuevo idioma para pedirlo.</p></div>
+        <div class="benefit-grid">
+          <article class="benefit"><div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M8 3c3 3-1 6 2 9s7 1 8 5c1 3-2 5-5 5C7 22 2 18 2 12S5 3 8 3Z"/><path d="M8 18c2-3 3-4 8-6"/></svg></div><h3>Sabor que se nota</h3><p>Un perfil de temporada pensado para ser agradable, aromático y fácil de disfrutar cada día.</p></article>
+          <article class="benefit"><div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-5.8 8-12a8 8 0 1 0-16 0c0 6.2 8 12 8 12Z"/><circle cx="12" cy="10" r="2.7"/></svg></div><h3>Espíritu madrileño</h3><p>Una marca que nace con la idea de trabajar con tostadores de la Comunidad de Madrid.</p></article>
+          <article class="benefit"><div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h14v7a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6V8ZM17 10h2a3 3 0 0 1 0 6h-2M5 3v2m5-2v2m5-2v2"/></svg></div><h3>A tu manera</h3><p>En grano o molido según tu cafetera. Porque un café especial también puede ser fácil.</p></article>
+        </div>
+      </div>
+    </section>
+    <section id="comprar" class="shop">
+      <div class="container shop-layout">
+        <div class="shop-visual" aria-label="Bolsa ilustrada de Sierra y Taza" role="img">
+          <div class="shop-sticker">Tu nuevo<br>favorito<br>♡</div>
+          <div class="bag" aria-hidden="true"><div class="bag-top"></div><div class="bag-body"><div class="bag-label"><span class="mini">Desde Madrid</span><span class="brand">Sierra<br>&amp; Taza</span><svg class="mountain" viewBox="0 0 160 68" fill="none" stroke="#53614b" stroke-width="1.7"><path d="M4 56 45 12l24 29 15-17 30 32 15-19 27 19M19 56h124"/><path d="m37 21 8-9 7 9M79 34l5-10 8 9"/></svg><span class="type">Café de especialidad</span><span class="origin">Origen de temporada</span><span class="weight">250 G · CAFÉ EN GRANO</span></div></div></div>
+          <span class="shop-photo-caption">Diseño ilustrativo · Bolsa de 250 g</span>
+        </div>
+        <div class="shop-copy">
+          <div class="eyebrow">Nuestro café · Elige tu formato</div><h2 class="section-heading">Un gran café.<br><em>Todos los días.</em></h2>
+          <p class="section-subtitle">Nuestra propuesta de café de especialidad para preparar en casa. Elige tu formato y disfruta de un ritual más rico desde la primera taza.</p>
+          <div class="stars" aria-label="Perfil de sabor propuesto">✦ ✦ ✦ <span style="font:700 10px Arial,sans-serif;letter-spacing:.06em;color:#645f53">PERFIL DE SABOR PROPUESTO</span></div>
+          <div class="tasting"><span>☕ Cacao</span><span>✧ Caramelo</span><span>♧ Frutos secos</span></div>
+          <div class="purchase-form">
+            <div class="option-label">Elige tu pack <small>Precios propuestos</small></div>
+            <div class="pack-options" role="radiogroup" aria-label="Seleccionar pack">
+              <label class="pack-option"><span style="display:flex;align-items:center;gap:6px"><input type="radio" name="pack" value="single" checked><span class="pack-name">1 bolsa<small>250 g</small></span></span><span class="pack-price">16,90 €</span></label>
+              <label class="pack-option"><span style="display:flex;align-items:center;gap:6px"><input type="radio" name="pack" value="double"><span class="pack-name">Pack doble<small>2 × 250 g</small></span></span><span class="pack-price">32,90 €</span></label>
+            </div>
+            <label for="grind" class="option-label">¿Cómo lo preparas? <small>Elegimos la molienda</small></label>
+            <select class="select" id="grind"><option value="En grano">En grano · lo muelo en casa</option><option value="Molido para cafetera italiana">Molido · cafetera italiana</option><option value="Molido para filtro">Molido · filtro</option><option value="Molido para espresso">Molido · espresso</option></select>
+            <div class="buy-row">
+              <div class="qty-control" aria-label="Cantidad"><button type="button" id="qtyMinus" aria-label="Reducir cantidad">−</button><output id="qtyOutput" aria-live="polite">1</output><button type="button" id="qtyPlus" aria-label="Aumentar cantidad">+</button></div>
+              <button type="button" class="btn btn-dark add-button" id="addCart">Añadir al carrito · <span id="buyPrice">16,90 €</span> <span aria-hidden="true">↗</span></button>
+            </div>
+            <div class="price-note">Este es un prototipo de landing page. Los precios, sabores, condiciones de envío y productos son ilustrativos; no se realizan pedidos ni pagos reales.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="promo" id="oferta">
+      <div class="container promo-layout"><div><div class="eyebrow">Promoción de lanzamiento</div><h2>Tu primer café,<br><em>con un 10 % menos.</em></h2><p>Una bienvenida como debe ser. Aplica el código en el carrito de demostración y descubre cuánto ahorrarías en tu primer pedido.</p></div><div class="promo-code"><div class="label">Tu código de bienvenida</div><div class="code">BIENVENIDA10</div><button type="button" id="copyCode">Copiar código ↗</button></div></div>
+    </section>
+    <section class="marketing" id="concepto">
+      <div class="container">
+        <div class="marketing-head"><div><div class="eyebrow">Nuestra estrategia comercial</div><h2 class="section-heading">Las 4 P detrás<br>de <em>Sierra &amp; Taza.</em></h2></div><p>Cuatro decisiones para que el producto, su precio, su distribución y su comunicación trabajen juntos.</p></div>
+        <div class="p-grid">
+          <article class="p-card"><div class="number">01</div><h3>Producto <small>Product</small></h3><p>Café de especialidad de temporada en bolsas de 250 g, en grano o molido. Calidad y sencillez en cada taza.</p></article>
+          <article class="p-card"><div class="number">02</div><h3>Precio <small>Price</small></h3><p>16,90 € por bolsa o 32,90 € el pack doble. Un posicionamiento prémium accesible, sujeto a validación.</p></article>
+          <article class="p-card"><div class="number">03</div><h3>Distribución <small>Place</small></h3><p>Abastecimiento propuesto en la Comunidad de Madrid y venta digital orientada a toda la España peninsular.</p></article>
+          <article class="p-card"><div class="number">04</div><h3>Promoción <small>Promotion</small></h3><p>Instagram, TikTok, buscadores y creadores de contenido; código de bienvenida con 10 % de descuento.</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="brand-story" id="historia"><div class="container story-grid">
+      <div class="story-art" role="img" aria-label="Ilustración estilizada del paisaje de la Sierra de Madrid"><div class="sun-line"></div><div class="hill hill-back"></div><div class="hill"></div><div class="hill hill-front"></div><div class="story-art-text">De la sierra<br>a tu taza.</div></div>
+      <div class="story-copy"><div class="eyebrow">Una idea con raíces</div><h2 class="section-heading">Madrid como punto de partida. <em>Tú, como destino.</em></h2><p>Sierra &amp; Taza nace como una propuesta para conectar el oficio del tueste local con personas que buscan algo mejor para su café diario.</p><p>Queremos hablar de sabor sin complicaciones, de pequeñas rutinas que se disfrutan y de productos que cuentan una historia cercana.</p><div class="story-points"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m4 12 5 5L20 6"/></svg> Abastecimiento local propuesto en Madrid</div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m4 12 5 5L20 6"/></svg> Pensado para amantes del café y principiantes</div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m4 12 5 5L20 6"/></svg> Experiencia de compra online sencilla</div></div></div>
+    </div></section>
+    <section class="faq" id="preguntas"><div class="container faq-layout"><div><div class="eyebrow">Resolvemos tus dudas</div><h2 class="section-heading">El buen café<br><em>no tiene misterio.</em></h2><p class="section-subtitle">Aquí tienes las respuestas a las preguntas más habituales sobre nuestro concepto.</p></div><div class="faq-list">
+      <details><summary>¿Dónde se produciría el café?</summary><p>La propuesta es colaborar con un tostador ubicado en la Comunidad de Madrid. Aún no se ha confirmado el proveedor ni el acuerdo comercial.</p></details>
+      <details><summary>¿Puedo elegir café en grano o molido?</summary><p>Sí, en este concepto se ofrecen ambas opciones: en grano o molido para cafetera italiana, filtro y espresso.</p></details>
+      <details><summary>¿Se hacen envíos por España?</summary><p>El modelo de negocio previsto es la venta online en España peninsular. Tarifas, plazos y cobertura definitiva deberán confirmarse antes del lanzamiento.</p></details>
+      <details><summary>¿Cuánto cuesta y cómo funciona la promoción?</summary><p>El precio de referencia es 16,90 € por bolsa de 250 g o 32,90 € por el pack de dos. El código BIENVENIDA10 ilustra un 10 % de descuento de bienvenida.</p></details>
+      <details><summary>¿Puedo comprar en esta página?</summary><p>Esta web es una demostración para un proyecto de marketing. Puedes añadir productos a un carrito simulado y calcular el descuento, pero no se procesan pedidos ni pagos.</p></details>
+    </div></div></section>
+    <section class="closing"><div class="container"><div class="eyebrow">Sierra &amp; Taza</div><h2>La mejor parte de la mañana<br>puede caber en una taza.</h2><a class="btn" href="#comprar">Descubre el café <span aria-hidden="true">↗</span></a></div></section>
+  </main>
+  <footer class="footer"><div class="container"><div class="footer-top"><div><a class="logo" href="#inicio"><span class="logo-mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 27 15 12l7 9 5-6 10 12M3 32h34"/></svg></span><span class="logo-text">SIERRA &amp; TAZA <small>CAFÉ CON ORIGEN</small></span></a><p>Una propuesta de café de especialidad con inspiración madrileña, diseñada para disfrutar en toda España.</p></div><div class="footer-links"><a href="#el-cafe">Producto</a><a href="#comprar">Precio</a><a href="#concepto">Las 4 P</a><a href="#oferta">Promoción</a><a href="#preguntas">Preguntas</a></div></div><div class="footer-bottom"><span>© <span id="year">2026</span> Sierra &amp; Taza · Concepto de marca</span><span class="demo-note">Web demostrativa para proyecto de marketing. Marca, imagen, proveedor, precios y oferta propuestos; no hay venta real ni relación comercial confirmada.</span></div></div></footer>
+
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="drawerTitle">
+    <div class="drawer-head"><h2 id="drawerTitle">Tu carrito</h2><button class="icon-btn" id="closeCart" type="button" aria-label="Cerrar carrito"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 5 19 19M19 5 5 19"/></svg></button></div>
+    <div class="drawer-body" id="cartItems"><p class="drawer-empty">Todavía no has añadido ningún café. ¿Empezamos por tu favorito?</p></div>
+    <div class="drawer-bottom"><div class="coupon-row"><input id="couponInput" type="text" aria-label="Código promocional" placeholder="Código de descuento" maxlength="30"><button id="applyCoupon" type="button">Aplicar</button></div><p id="couponFeedback" class="coupon-feedback" aria-live="polite"></p><div class="total-line"><span>Subtotal</span><strong id="subtotal">0,00 €</strong></div><div class="total-line" id="discountRow" hidden><span>Descuento (10 %)</span><strong id="discount">−0,00 €</strong></div><div class="total-line primary"><span>Total estimado</span><span id="total">0,00 €</span></div><button type="button" id="demoCheckout" class="btn btn-terra">Prototipo: sin pago real</button><p class="drawer-disclaimer">Carrito interactivo de demostración. No realiza pedidos, ni procesa cobros, ni calcula gastos de envío.</p></div>
+  </aside>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script>
+    (() => {
+      'use strict';
+      const $ = (selector) => document.querySelector(selector);
+      const euro = (amount) => new Intl.NumberFormat('es-ES', {style:'currency',currency:'EUR'}).format(amount);
+      const state = { quantity: 1, items: [], coupon: false };
+      const cart = $('#cartDrawer'), overlay = $('#overlay');
+      let toastTimeout, previousFocus;
+      function toast(message) { const el=$('#toast'); el.textContent=message; el.classList.add('show'); clearTimeout(toastTimeout); toastTimeout=setTimeout(()=>el.classList.remove('show'),2700); }
+      function openCart() { previousFocus=document.activeElement; cart.classList.add('open'); overlay.classList.add('open'); cart.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; $('#closeCart').focus(); }
+      function closeCart() { cart.classList.remove('open'); overlay.classList.remove('open'); cart.setAttribute('aria-hidden','true'); document.body.style.overflow=''; if(previousFocus?.focus) previousFocus.focus(); }
+      $('#openCart').addEventListener('click',openCart);
+      $('#closeCart').addEventListener('click',closeCart);
+      overlay.addEventListener('click',closeCart);
+      document.addEventListener('keydown', e=>{if(e.key==='Escape'&&cart.classList.contains('open')) closeCart(); if(e.key==='Tab'&&cart.classList.contains('open')) { const els=[...cart.querySelectorAll('button:not([disabled]),input:not([disabled])')]; const first=els[0],last=els[els.length-1]; if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}});
+      const menu=$('#navLinks'), toggle=$('#menuToggle');
+      toggle.addEventListener('click',()=>{const opening=!menu.classList.contains('open'); menu.classList.toggle('open',opening); toggle.setAttribute('aria-expanded',String(opening));toggle.setAttribute('aria-label',opening?'Cerrar menú':'Abrir menú');});
+      menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open'); toggle.setAttribute('aria-expanded','false');}));
+      function packSelection() { return document.querySelector('input[name="pack"]:checked').value; }
+      function priceEach() { return packSelection()==='double'?32.9:16.9; }
+      function updateSelection(){ $('#qtyOutput').textContent=state.quantity; $('#buyPrice').textContent=euro(priceEach()*state.quantity); }
+      $('#qtyMinus').addEventListener('click',()=>{state.quantity=Math.max(1,state.quantity-1);updateSelection();});
+      $('#qtyPlus').addEventListener('click',()=>{state.quantity=Math.min(20,state.quantity+1);updateSelection();});
+      document.querySelectorAll('input[name="pack"]').forEach(el=>el.addEventListener('change',updateSelection));
+      $('#addCart').addEventListener('click',()=>{ const pack=packSelection(), grind=$('#grind').value; const key=pack+'|'+grind, existing=state.items.find(item=>item.key===key); if(existing) existing.quantity+=state.quantity;else state.items.push({key,pack,grind,quantity:state.quantity,unit:priceEach()}); renderCart();openCart();toast('¡Café añadido al carrito demo!'); });
+      function renderCart(){
+        const count=state.items.reduce((sum,item)=>sum+item.quantity,0);
+        $('#cartCount').textContent=count; $('#cartCount').style.display=count?'grid':'none';
+        const host=$('#cartItems');host.replaceChildren();
+        if(!count){let p=document.createElement('p');p.className='drawer-empty';p.textContent='Todavía no has añadido ningún café. ¿Empezamos por tu favorito?';host.appendChild(p);}
+        state.items.forEach((item,i)=>{
+          const row=document.createElement('div');row.className='cart-line';
+          const thumb=document.createElement('div');thumb.className='cart-thumbnail';thumb.textContent='S&T';
+          const desc=document.createElement('div');const title=document.createElement('strong');title.textContent='Sierra & Taza · '+(item.pack==='double'?'Pack doble':'250 g');
+          const detail=document.createElement('p');detail.textContent=item.grind+' · Cantidad: '+item.quantity;
+          const remove=document.createElement('button');remove.className='remove';remove.type='button';remove.textContent='Eliminar';remove.addEventListener('click',()=>{state.items.splice(i,1);renderCart();});
+          desc.append(title,detail,remove);const price=document.createElement('span');price.className='line-price';price.textContent=euro(item.unit*item.quantity);
+          row.append(thumb,desc,price);host.appendChild(row);
+        });
+        const subtotal=state.items.reduce((sum,item)=>sum+item.unit*item.quantity,0);
+        const discount=state.coupon?Math.round(subtotal*10)/100:0;
+        $('#subtotal').textContent=euro(subtotal);$('#discount').textContent='−'+euro(discount);$('#discountRow').hidden=!state.coupon;
+        $('#total').textContent=euro(subtotal-discount);
+      }
+      $('#applyCoupon').addEventListener('click',()=>{
+        const code=$('#couponInput').value.trim().toUpperCase();
+        if(code==='BIENVENIDA10'){state.coupon=true;$('#couponFeedback').textContent='¡Descuento del 10 % aplicado!';$('#couponInput').value='BIENVENIDA10';}
+        else{$('#couponFeedback').textContent='Código no válido. Prueba BIENVENIDA10.';}
+        renderCart();
+      });
+      $('#copyCode').addEventListener('click',async()=>{
+        const text='BIENVENIDA10';let copied=false;
+        try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);copied=true;}}catch(e){}
+        if(copied)toast('Código copiado: '+text);
+        else{const el=$('#couponInput');el.value=text;openCart();toast('Código preparado en el carrito: '+text);}
+      });
+      $('#demoCheckout').addEventListener('click',()=>toast('Esta página es un prototipo: no se realizan compras reales.'));
+      $('#year').textContent=String(new Date().getFullYear());
+      updateSelection();renderCart();
+    })();
+  </script>
+</body>
+</html>
